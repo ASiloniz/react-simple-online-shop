@@ -1,6 +1,7 @@
 import React from 'react';
 import Product from './Product';
 import { getProducts } from '../repository';
+import { Link } from 'react-router-dom';
 
 
 export default class ProductList extends React.Component {
@@ -27,6 +28,9 @@ export default class ProductList extends React.Component {
                 {products.map((product, index) => (
                     <Product product={product} key={index} />
                 ))}
+                <Link to="/cart">
+                    <button className="btn btn-primary">View Cart</button>
+                </Link>
             </div>
         );
     }
