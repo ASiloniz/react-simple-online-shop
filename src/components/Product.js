@@ -3,29 +3,48 @@ import React from 'react';
 
 export default class Product extends React.Component {
     state = {
-        quantity: 1,
-        addedToCart: false,
+        quantity: this.props.product.available_quantity,
         quantityInCart: 0
+    };
+
+    getQuantitySelector(){
+        let quantityValues = [];
+        for (let i = 1; i <= this.state.quantity; i++){
+            quantityValues = [...quantityValues, i];
+        }
+
+        const selectItems = quantityValues.map((number) =>
+            <option value={number} key={number}>
+                {number}
+            </option>
+        );
+
+        return (
+            <select ref="quantitySelected" name="quantity">
+                {selectItems}
+            </select>
+        );
     };
 
     addToCart = () => {
         let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         const { product } = this.props;
-        console.log(cart);
 
-        let inObject = cart.filter(v => v.name === product.name).length;
+        let inCart = cart.filter(v => v.name === product.name).length;
 
-        if (inObject){
+        const selectedValue = parseInt(this.refs.quantitySelected.value);
+
+        if (!!inCart){
             cart.forEach((cartItem) =>{
                 if(cartItem.name === product.name){
-                    cartItem.quantityRequired = this.state.quantity;
+                    cartItem.quantityRequired = selectedValue;
                 }
             });
         } else{
             let cartAddition = {
                 id: product.id,
                 name: product.name,
-                quantityRequired: this.state.quantity
+                quantityRequired: selectedValue
             };
             cart.push(cartAddition);
         }
@@ -33,16 +52,10 @@ export default class Product extends React.Component {
         localStorage.setItem('cart', JSON.stringify(cart));
 
         console.table(cart);
-        this.setState(
-            {
-                addedToCart: true,
-                quantityInCart: this.state.quantity
-            }
-        );
+        this.setState({quantityInCart: selectedValue});
     };
 
     render(){
-        console.log(this.state);
         const { product } = this.props;
         return (
             <div className="card">
@@ -53,15 +66,18 @@ export default class Product extends React.Component {
                     { product.available_quantity > 0 ?
                         <div>
                             <span className="card-text">
-                                <small>Only </small>{product.available_quantity}<small> in stock</small>
+                                    {this.getQuantitySelector()}
+                                    {!!this.state.quantityInCart && <p>In cart:{this.state.quantityInCart}</p>}
                             </span>
+                            
                             <button 
                                 className="btn btn-sm btn-warning float-right"
                                 onClick={this.addToCart}
                             >
                                 Add to cart
                             </button>
-                        </div> :
+                        </div>
+                        :
                         <p className="text-danger"> product is out of stock </p>
                     }
                 </div>
