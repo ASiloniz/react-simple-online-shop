@@ -1,5 +1,6 @@
 import React from 'react';
 import CartItem from './CartItem';
+import { Link } from 'react-router-dom';
 
 export default class Cart extends React.Component{
     state = {
@@ -12,6 +13,7 @@ export default class Cart extends React.Component{
             cart:[]
            } 
         });
+        localStorage.setItem('cart', JSON.stringify([]));
     };
 
     getTotal = () => {
@@ -44,9 +46,11 @@ export default class Cart extends React.Component{
                     cart.map((cartItem) => <CartItem key={cartItem.id} item={cartItem} deleteItem={this.deleteItem} />)
                 }
                 { cart !== null && 
-                    cart.length ? this.getTotal() : <h3 className="text-warning">Empty cart!</h3>
+                    cart.length ? this.getTotal() : <div><h3 className="text-warning">Empty cart!</h3><Link to="/">Go to Product List</Link> </div>
                 }
-                <button className="btn btn-danger float-right" onClick={this.handleClearCart}>Clear Cart</button>
+                { cart.length !== 0 && 
+                    <button className="btn btn-danger float-right" onClick={this.handleClearCart}>Clear Cart</button>   
+                }
             </div>
         );
     }

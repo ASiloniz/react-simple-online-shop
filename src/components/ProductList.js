@@ -17,10 +17,6 @@ export default class ProductList extends React.Component {
         });
     }
 
-    handleEmptyCart = () => {
-        localStorage.clear();
-    }
-
     handleSearchClick = (value) => {
 
         const valueSearched = value.toLowerCase();
@@ -45,15 +41,20 @@ export default class ProductList extends React.Component {
         return (
             <div className=" container">
                 <h3 className="card-title">List of Available Products</h3>
-                <SearchField 
-                    placeholder="Search..."
-                    onChange={this.handleSearchValue}
-                    onSearchClick={this.handleSearchClick}
-                    onEnter={this.handleSearchClick}
-                    searchText=""
-                    classNames="test-class"
-                />
-                <button onClick={this.handleEmptyCart}>Empty cart</button>
+                <div style={{ marginBottom: '10px', display: 'flex', justifyContent:'flex-start' }}>
+                    <SearchField 
+                        placeholder="Search..."
+                        onChange={this.handleSearchValue}
+                        onSearchClick={this.handleSearchClick}
+                        onEnter={this.handleSearchClick}
+                        searchText=""
+                        classNames="test-class"
+                    />
+                    <Link to="/cart">
+                        <button className="btn btn-success" style={{ marginLeft: '30px' }}>View Cart</button>
+                    </Link>
+                </div>
+
                 {searchedProducts.length > 0 ? 
                     searchedProducts.map((product, index) => (
                         <Product product={product} key={index} />
@@ -62,9 +63,7 @@ export default class ProductList extends React.Component {
                         <Product product={product} key={index} />
                     ))
                 }
-                <Link to="/cart">
-                    <button className="btn btn-primary">View Cart</button>
-                </Link>
+
             </div>
         );
     }

@@ -20,7 +20,7 @@ export default class Product extends React.Component {
         );
 
         return (
-            <select ref="quantitySelected" name="quantity">
+            <select className="form-control" ref="quantitySelected" name="quantity" style={{width:'40px'}}>
                 {selectItems}
             </select>
         );
@@ -61,15 +61,19 @@ export default class Product extends React.Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <h4 className="card-title">{product.name}</h4>
-                    <p className="card-text">{product.description}</p>
+                    <h4 className="card-title">{product.name} </h4>
+                    <div style={{display:'flex', justifyContent:'space-between'}}>
+                        <img src={product.img} width='200' style={{margin: '20px'}}/>
+                        <p className="card-text" >{product.description}</p>
+                    </div>
                     <h5 className="card-text"><small>price: </small>${product.price}</h5>
+
                     { product.available_quantity > 0 ?
                         <div>
-                            <span className="card-text">
+                            <div className="card-text" style={{ display:'flex', justifyContent: 'flex-start' }}>
                                     {this.getQuantitySelector()}
-                                    {!!this.state.quantityInCart && <p>In cart:{this.state.quantityInCart}</p>}
-                            </span>
+                                    {!!this.state.quantityInCart && <h4 style={{color:'#44D97B', margin: 'auto 30px'}}>In cart:{this.state.quantityInCart}</h4>}
+                            </div>
                             
                             <button 
                                 className="btn btn-sm btn-warning float-right"

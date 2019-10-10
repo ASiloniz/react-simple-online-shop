@@ -12,7 +12,7 @@ const Header = () => {
                         <li className="nav-item active">
                             <NavLink activeClassName="is-active" to="/" exact={true}>Products List</NavLink>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" style={{ marginLeft:'30px'}}>
                             <NavLink activeClassName="is-active" to="/cart">Cart</NavLink>
                         </li>
                     </ul>
