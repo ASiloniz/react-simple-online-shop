@@ -22,7 +22,7 @@ export default class Cart extends React.Component{
             totalAmount += item.quantityRequired * item.price;
         });
         return (
-            <div>
+            <div style={{display:'flex', justifyContent:'flex-start'}}>
                 <h4>
                     <small>Total Amount:</small><span className="float-right text-primary">${totalAmount}</span>
                 </h4>
