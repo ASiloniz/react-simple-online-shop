@@ -1,18 +1,20 @@
 const products = [
   {
     id: 01,
-    name: 'Product 1',
+    name: 'T-shirts',
     available_quantity: 5,
     price: 450,
-    description: 'Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. Magna simul ad est. Nostrum neglegentur ius at, at pertinax repudiare vel. Vim an adolescens quaerendum.'
+    description: 'A T-shirt is a style of fabric shirt named after the T shape of its body and sleeves. Traditionally it has short sleeves and a round neckline, known as a crew neck, which lacks a collar. T-shirts are generally made of a stretchy, light and inexpensive fabric and are easy to clean.'
+
   },
 
   {
     id: 02,
-    name: 'Product 2',
+    name: 'Olive oil',
     available_quantity: 7,
     price: 50,
-    description: 'Lorem ipsum dolor sit amet, iusto appellantur vix te, nam affert feugait menandri eu. Magna simul ad est. Nostrum neglegentur ius at, at pertinax repudiare vel. Vim an adolescens quaerendum.'
+    description: 'Olive oil is a liquid obtained from olives (the fruit of Olea europaea; family Oleaceae), a traditional tree crop of the Mediterranean Basin. The oil is produced by pressing whole olives. It is commonly used in cooking, whether for frying or as a salad dressing.'
+
   },
 
   {

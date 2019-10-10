@@ -40,10 +40,10 @@ export default class Cart extends React.Component{
         return(
             <div className=" container">
                 <h3 className="card-title">Cart</h3>
-                {
+                {cart !== null && 
                     cart.map((cartItem) => <CartItem key={cartItem.id} item={cartItem} deleteItem={this.deleteItem} />)
                 }
-                { 
+                { cart !== null && 
                     cart.length ? this.getTotal() : <h3 className="text-warning">Empty cart!</h3>
                 }
                 <button className="btn btn-danger float-right" onClick={this.handleClearCart}>Clear Cart</button>
