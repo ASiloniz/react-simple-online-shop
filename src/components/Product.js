@@ -44,7 +44,8 @@ export default class Product extends React.Component {
             let cartAddition = {
                 id: product.id,
                 name: product.name,
-                quantityRequired: selectedValue
+                quantityRequired: selectedValue,
+                price: product.price
             };
             cart.push(cartAddition);
         }
